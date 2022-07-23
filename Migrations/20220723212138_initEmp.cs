@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebApi_LMS_Team3.Migrations
+namespace Team3_LMS_WebApi.Migrations
 {
     public partial class initEmp : Migration
     {
@@ -18,7 +18,8 @@ namespace WebApi_LMS_Team3.Migrations
                     Emp_Mobile = table.Column<long>(type: "bigint", nullable: false),
                     Emp_Dept = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Available_Leave = table.Column<long>(type: "bigint", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

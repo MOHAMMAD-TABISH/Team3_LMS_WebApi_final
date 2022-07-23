@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi_LMS_Team3.DataAccessLayer;
 
-namespace WebApi_LMS_Team3.Migrations
+namespace Team3_LMS_WebApi.Migrations
 {
     [DbContext(typeof(DataAccessLayer_LMS))]
-    [Migration("20220722052850_initEmp")]
+    [Migration("20220723212138_initEmp")]
     partial class initEmp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,6 +85,9 @@ namespace WebApi_LMS_Team3.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("image")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Emp_Id");

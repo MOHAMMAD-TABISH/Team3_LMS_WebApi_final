@@ -16,5 +16,6 @@ namespace WebApi_LMS_Team3.Model
         public string Emp_Dept { get; set; }
         public long Available_Leave { get; set; }
         public string Password { get; set; }
+        public string image { get; set; }
     }
 }
