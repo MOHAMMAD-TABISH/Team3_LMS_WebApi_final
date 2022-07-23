@@ -94,6 +94,19 @@ namespace WebApi_LMS_Team3.Repository
 
             return 1;
         }
+        public int UpdatePass(int? id, string pass)
+        {
+            var a = dataAccessLayer_LMS.Employee_T.FirstOrDefault(x => x.Emp_Id == id);
+            if (a != null)
+            {
+                a.Password = pass;
+                
+                dataAccessLayer_LMS.SaveChanges();
+
+            }
+
+            return 1;
+        }
 
     }
 }

@@ -14,5 +14,6 @@ namespace WebApi_LMS_Team3.Repository
 
         Task<int> NewLeaveAsync(ApplyLeaveDb applyleave);
 
+
     }
 }

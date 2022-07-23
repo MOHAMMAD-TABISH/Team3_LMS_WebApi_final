@@ -15,5 +15,7 @@ namespace WebApi_LMS_Team3.Repository
         Task<int> Login_Async(string email, string password);
         Task<int> Login_withID_Async(int id, string password);
         Task<int> DeleteEmp_Async(int? id);
+        int UpdatePass(int? id, string pass);
+
     }
 }

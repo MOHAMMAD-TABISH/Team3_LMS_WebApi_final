@@ -73,6 +73,15 @@ namespace WebApi_LMS_Team3.Controllers
             }
             return 1;
         }
+        [HttpPut]
+        [Route("Update")]
+        public int UpdatePass(int id, string pass)
+        {
+        
+            var ar = employeeRepo.UpdatePass(id, pass);
+
+            return 1;
+        }
         [HttpDelete]
         [Route("Delete/{id}")]
         public async Task<int> Delete(int? id)
