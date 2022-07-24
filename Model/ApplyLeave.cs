@@ -28,5 +28,6 @@ namespace WebApi_LMS_Team3.Model
         public DateTime AppliedOn { get; set; }
         [Required]
         public string Mng_Comments { get; set; }
+        public int Mng_Id { get; set; }
     }
 }

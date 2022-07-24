@@ -33,6 +33,14 @@ namespace WebApi_LMS_Team3.Controllers
             var list = applyLeaveRepo.ShowAllLeaves_Emp(id);
             return list;
         }
+        [HttpGet]
+        [Route("Mng_Leaves/{id}")]
+        public List<ApplyLeave> Leave_List_Mng(int? id)
+        {
+            var list = applyLeaveRepo.ShowAllLeaves_Mng(id);
+            return list;
+        }
+
         [HttpPatch]
         [Route("ChangeStatus/{id}")]
 
@@ -43,9 +51,27 @@ namespace WebApi_LMS_Team3.Controllers
         }
         [HttpPost]
         [Route("Leave")]
-        public async Task<int>AddNewLeave(ApplyLeaveDb leave)
+        public async Task<int> AddNewLeave(ApplyLeaveDb leave)
         {
             var newleave = await applyLeaveRepo.NewLeaveAsync(leave);
+            return 1;
+        }
+        [HttpPatch]
+        [Route("Update_approve")]
+        public int Update_approve(int id)
+        {
+
+            var ar = applyLeaveRepo.Update_approve(id);
+
+            return 1;
+        }
+        [HttpPatch]
+        [Route("Update_deny")]
+        public int Update_deny(int id)
+        {
+
+            var ar = applyLeaveRepo.Update_deny(id);
+
             return 1;
         }
 

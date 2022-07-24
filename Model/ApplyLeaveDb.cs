@@ -11,7 +11,7 @@ namespace WebApi_LMS_Team3.Model
     {
         [Key]
         public int LeaveId { get; set; }
-       
+
         public int NoOfDays { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -20,6 +20,7 @@ namespace WebApi_LMS_Team3.Model
         public string LeaveReason { get; set; }
         public DateTime AppliedOn { get; set; }
         public string Mng_Comments { get; set; }
+        public int Mng_Id { get; set; }
         public int Emp_Id { get; set; }
         [ForeignKey("Emp_Id")]
         public virtual EmployeeDb Employee { get; set; }

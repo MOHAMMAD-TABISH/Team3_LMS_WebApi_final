@@ -38,7 +38,7 @@ namespace WebApi_LMS_Team3.Repository
          }*/
 
         public async Task<int> NewLeaveAsync(ApplyLeaveDb leaveSection)
-              {
+        {
             var data = mapper.Map<ApplyLeaveDb>(leaveSection);
             if (data != null)
             {
@@ -56,7 +56,7 @@ namespace WebApi_LMS_Team3.Repository
  */
         public List<ApplyLeave> ShowAllLeaves(int? id)
         {
-            var all_leaves = dataAccessLayer_LMS.ApplyLeave_T.Where(x =>x.LeaveId == id);
+            var all_leaves = dataAccessLayer_LMS.ApplyLeave_T.Where(x => x.LeaveId == id);
             var leaves = mapper.Map<List<ApplyLeave>>(all_leaves);
             return leaves;
 
@@ -68,6 +68,39 @@ namespace WebApi_LMS_Team3.Repository
             var leaves = mapper.Map<List<ApplyLeave>>(all_leaves);
             return leaves;
 
+        }
+        public List<ApplyLeave> ShowAllLeaves_Mng(int? id)
+        {
+            var all_leaves = dataAccessLayer_LMS.ApplyLeave_T.Where(x => x.Mng_Id == id);
+            var leaves = mapper.Map<List<ApplyLeave>>(all_leaves);
+            return leaves;
+
+        }
+        public int Update_approve(int? id)
+        {
+            var a = dataAccessLayer_LMS.ApplyLeave_T.FirstOrDefault(x => x.LeaveId == id);
+            if (a != null)
+            {
+                a.LeaveStatus = "Approve";
+
+                dataAccessLayer_LMS.SaveChanges();
+
+            }
+
+            return 1;
+        }
+        public int Update_deny(int? id)
+        {
+            var a = dataAccessLayer_LMS.ApplyLeave_T.FirstOrDefault(x => x.LeaveId == id);
+            if (a != null)
+            {
+                a.LeaveStatus = "Denied";
+                a.Mng_Comments = "I'm sorry I had to to refuse your request due to work Load";
+                dataAccessLayer_LMS.SaveChanges();
+
+            }
+
+            return 1;
         }
 
 

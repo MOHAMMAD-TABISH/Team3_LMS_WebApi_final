@@ -10,12 +10,15 @@ namespace WebApi_LMS_Team3.Model
     public class ManagerDb
     {
         [Key]
-        public int Mng_Id { get; set; }
+        public int serialno { get; set; }
         [ForeignKey("EmployeeId")]
         public int EmployeeId { get; set; }
         public string Mng_Name { get; set; }
         public string Mng_Email { get; set; }
         public long Mng_Mobile { get; set; }
+        public int Mng_Id { get; set; }
+        [ForeignKey("Mng_Id")]
+        public virtual EmployeeDb Employee { get; set; }
 
     }
 }

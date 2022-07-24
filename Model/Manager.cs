@@ -8,12 +8,14 @@ namespace WebApi_LMS_Team3.Model
 {
     public class Manager
     {
-        public int Mng_Id { get; set; }
+
+        public int serialno { get; set; }
         [Required]
         public string Mng_Name { get; set; }
         [Required]
         public string Mng_Email { get; set; }
         [Required]
         public long Mng_Mobile { get; set; }
+        public int Mng_Id { get; set; }
     }
 }

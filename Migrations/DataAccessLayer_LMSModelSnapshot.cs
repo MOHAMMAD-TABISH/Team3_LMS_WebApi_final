@@ -47,6 +47,9 @@ namespace Team3_LMS_WebApi.Migrations
                     b.Property<string>("Mng_Comments")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Mng_Id")
+                        .HasColumnType("int");
+
                     b.Property<int>("NoOfDays")
                         .HasColumnType("int");
 
@@ -95,7 +98,7 @@ namespace Team3_LMS_WebApi.Migrations
 
             modelBuilder.Entity("WebApi_LMS_Team3.Model.ManagerDb", b =>
                 {
-                    b.Property<int>("Mng_Id")
+                    b.Property<int>("serialno")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -106,13 +109,18 @@ namespace Team3_LMS_WebApi.Migrations
                     b.Property<string>("Mng_Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Mng_Id")
+                        .HasColumnType("int");
+
                     b.Property<long>("Mng_Mobile")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Mng_Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Mng_Id");
+                    b.HasKey("serialno");
+
+                    b.HasIndex("Mng_Id");
 
                     b.ToTable("Manager_T");
                 });
@@ -122,6 +130,17 @@ namespace Team3_LMS_WebApi.Migrations
                     b.HasOne("WebApi_LMS_Team3.Model.EmployeeDb", "Employee")
                         .WithMany()
                         .HasForeignKey("Emp_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("WebApi_LMS_Team3.Model.ManagerDb", b =>
+                {
+                    b.HasOne("WebApi_LMS_Team3.Model.EmployeeDb", "Employee")
+                        .WithMany()
+                        .HasForeignKey("Mng_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

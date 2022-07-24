@@ -12,7 +12,7 @@ namespace Team3_LMS_WebApi.Migrations
                 columns: table => new
                 {
                     Emp_Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "2457, 1"),
                     Emp_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Emp_Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Emp_Mobile = table.Column<long>(type: "bigint", nullable: false),
@@ -24,22 +24,6 @@ namespace Team3_LMS_WebApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employee_T", x => x.Emp_Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Manager_T",
-                columns: table => new
-                {
-                    Mng_Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    Mng_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Mng_Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Mng_Mobile = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Manager_T", x => x.Mng_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,6 +40,7 @@ namespace Team3_LMS_WebApi.Migrations
                     LeaveReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AppliedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Mng_Comments = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mng_Id = table.Column<int>(type: "int", nullable: false),
                     Emp_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -69,10 +54,38 @@ namespace Team3_LMS_WebApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Manager_T",
+                columns: table => new
+                {
+                    serialno = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    Mng_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mng_Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mng_Mobile = table.Column<long>(type: "bigint", nullable: false),
+                    Mng_Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Manager_T", x => x.serialno);
+                    table.ForeignKey(
+                        name: "FK_Manager_T_Employee_T_Mng_Id",
+                        column: x => x.Mng_Id,
+                        principalTable: "Employee_T",
+                        principalColumn: "Emp_Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ApplyLeave_T_Emp_Id",
                 table: "ApplyLeave_T",
                 column: "Emp_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Manager_T_Mng_Id",
+                table: "Manager_T",
+                column: "Mng_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
